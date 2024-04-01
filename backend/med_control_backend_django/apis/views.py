@@ -13,8 +13,8 @@ from rest_framework import status, viewsets
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from .serializers import UserSerializer, ProductsSerializer, ProductSerializer, ShopSerializer, MedicationSerializer
-from .models import Products, Product, Shop, Medication, Cart, CartItem
+from .serializers import UserSerializer, MedicationSerializer
+from .models import Medication, Cart, CartItem
 from .models import Cart, Order, OrderItem
 from .serializers import OrderSerializer, CartItemSerializer
 from django.shortcuts import get_object_or_404
