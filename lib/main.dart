@@ -120,25 +120,57 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ), body: SingleChildScrollView( // Allows for scrolling if content exceeds screen size
-        child: Column(
-          children: [
-            SizedBox(
-              height: 200, // Adjust the height as needed
-              width: double.infinity, // Ensures the image takes full width
-              child: Image.asset(
-                'assets/images/back.png',
-                fit: BoxFit.cover, // Ensures the image covers the widget size
-              ),
+      ), 
+       body: Stack(
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height, // Takes full screen height
+            width: MediaQuery.of(context).size.width, // Takes full screen width
+            child: Image.asset(
+              'assets/images/back.png',
+              fit: BoxFit.cover, // Covers the whole widget area
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Welcome to Utibu Health!'),
+          ),
+           SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Text('Welcome to Utibu Health!', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    childAspectRatio: 3 / 2,
+                    children: <Widget>[
+                      _buildHomeIcon(Icons.add_shopping_cart, 'Order Medication', () => Navigator.pushNamed(context, '/orderMedication')),
+                      _buildHomeIcon(Icons.shopping_cart, 'Cart', () => Navigator.pushNamed(context, '/checkout')),
+                      _buildHomeIcon(Icons.receipt, 'View Statement', () => Navigator.pushNamed(context, '/viewStatement')),
+                      if (isLoggedIn) _buildHomeIcon(Icons.account_circle, 'Profile', () => Navigator.pushNamed(context, '/profile')),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            // Add more widgets as needed
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
+}
+
+Widget _buildHomeIcon(IconData icon, String label, VoidCallback onTap) {
+  return Card(
+    elevation: 4.0,
+    child: InkWell(
+      onTap: onTap,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(icon, size: 24.0), // Size reduced from 40.0 to 24.0
+          SizedBox(height: 8), // Added some space between the icon and the label
+          Text(label, textAlign: TextAlign.center, style: TextStyle(fontSize: 14)), // Optionally, adjust font size for the label
+        ],
+      ),
+    ),
+  );
 }

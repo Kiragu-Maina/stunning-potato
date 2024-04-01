@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"main.dart.js": "b5291b987767f1f009c62d1f126a3f42",
+const RESOURCES = {"main.dart.js": "1337f68c6627a9442cd9b1c73fc003e5",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "canvaskit/skwasm.js": "445e9e400085faead4493be2224d95aa",
 "canvaskit/canvaskit.js": "c86fbd9e7b17accae76e5ad116583dc4",
@@ -22,16 +22,18 @@ const RESOURCES = {"main.dart.js": "b5291b987767f1f009c62d1f126a3f42",
 "flutter.js": "c71a09214cb6f5f8996a531350400a9a",
 "version.json": "787e3de1aabf132ccfd71a23b19bedf6",
 "manifest.json": "1a4816d78f2735da3bedc6fdf3377891",
-"index.html": "c7ac1d7809973d692a9e759cdb055cf6",
-"/": "c7ac1d7809973d692a9e759cdb055cf6",
+"index.html": "01397770a25a02ef5a3780267242a87f",
+"/": "01397770a25a02ef5a3780267242a87f",
 "assets/NOTICES": "60c72fa00d3549fe8fd684f217b338ec",
 "assets/fonts/MaterialIcons-Regular.otf": "8abb7398db597783e6f440c8ac08bbed",
-"assets/AssetManifest.bin.json": "4e085950f79a2d0dd0e634e45eb26f3c",
-"assets/AssetManifest.json": "0166ea359d5c3fa44f8ceff72dc522f1",
-"assets/AssetManifest.bin": "03c362dd8d9dba1d7488509be76b40ba",
+"assets/AssetManifest.bin.json": "b3b670b1b3f13fb8721b5ddd297b19f9",
+"assets/AssetManifest.json": "8bfcb725a52fa958dbcf9c517b9e5e83",
+"assets/AssetManifest.bin": "4698e109e4fea8489364801b62ef95a3",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "89ed8f4e49bcdfc0b5bfc9b24591e347",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
 "assets/FontManifest.json": "5663a649aa755b295b07f9377aa38684",
+"assets/assets/images/DALL%25C2%25B7E%25202024-04-01%252023.59.21%2520-%2520Create%2520an%2520image%2520for%2520a%2520health%2520app%2520home%2520page%2520dashboard,%2520envisioning%2520a%2520sleek,%2520modern%2520interface%2520that%2520embodies%2520a%2520sense%2520of%2520tranquility%2520and%2520reliability.%2520The%2520.webp": "31f71e8a6b7dacd754dc0b8ab439f74c",
+"assets/assets/images/back.png": "3b59c62d7c65695cd45feef9b67960bd",
 "assets/assets/sushi.png": "cf45395d71907077968ebcdb3e6089c0",
 "assets/assets/CustomIcons.ttf": "c94d2b4d3ded90cc6b472a7f38a9ea9d"};
 // The application shell files that are downloaded before a service worker can
