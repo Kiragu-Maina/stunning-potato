@@ -1,0 +1,16 @@
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/food_app
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/icudtl.dat
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/lib/libflutter_linux_gtk.so
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin.json
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.json
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/shaders/ink_sparkle.frag
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/version.json
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/assets/sushi.png
+/home/alkennist__/projects/FlutterUITemplates/food_app/build/linux/x64/debug/bundle/data/flutter_assets/assets/CustomIcons.ttf
