@@ -83635,7 +83635,7 @@ p.push(A.fu(s,s,s,!0,A.fR(B.Dc,s),new A.aeQ(a),s,A.aK("Order Medication",s,s,s,s
 p.push(A.fu(s,s,s,!0,A.fR(B.Dl,s),new A.aeR(a),s,A.aK("Cart",s,s,s,s,s,s),s,s))
 p.push(A.fu(s,s,s,!0,A.fR(B.Dk,s),new A.aeS(a),s,A.aK("View Statement",s,s,s,s,s,s),s,s))
 p=A.arS(p,B.an)
-return A.kc(r,A.ant(A.l9(A.b([A.hN(new A.wN(A.aDS(s,s,new A.v6("assets/images/health_dashboard.png",s,s)),B.zr,s),200,1/0),new A.c3(B.me,A.aK("Welcome to Utibu Health!",s,s,s,s,s,s),s)],q),B.b3,B.bu,B.c7)),new A.Hc(p,s),s,s)}}
+return A.kc(r,A.ant(A.l9(A.b([A.hN(new A.wN(A.aDS(s,s,new A.v6("assets/images/back.png",s,s)),B.zr,s),200,1/0),new A.c3(B.me,A.aK("Welcome to Utibu Health!",s,s,s,s,s,s),s)],q),B.b3,B.bu,B.c7)),new A.Hc(p,s),s,s)}}
 A.aeM.prototype={
 $0(){this.a.d=!0},
 $S:0}
