@@ -46,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
         print("Failed to fetch user info: ${response.body}");
       }
     } catch (e) {
-      print("Error fetching user info: $e");
+      print("Error getting user info: $e");
     }
   }
 
