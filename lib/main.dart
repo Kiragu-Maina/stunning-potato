@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
               height: 200, // Adjust the height as needed
               width: double.infinity, // Ensures the image takes full width
               child: Image.asset(
-                'assets/images/health_dashboard.png',
+                'assets/images/back.png',
                 fit: BoxFit.cover, // Ensures the image covers the widget size
               ),
             ),
