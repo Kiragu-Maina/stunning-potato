@@ -35,7 +35,7 @@ To run the app in a development environment, follow these steps:
 
 To install the Utibu Health app on your Android device:
 
-1. Navigate to the `build/app/outputs/` folder in the project directory.
+1. Navigate to the `build/app/outputs/apk/release` folder in the project directory.
 2. Transfer the APK file to your Android device.
 3. On your device, navigate to the APK file and tap it to start the installation. You may need to allow installation from unknown sources.
 4. Follow the on-screen instructions to complete the installation.
