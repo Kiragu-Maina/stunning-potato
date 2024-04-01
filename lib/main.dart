@@ -166,8 +166,8 @@ Widget _buildHomeIcon(IconData icon, String label, VoidCallback onTap) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(icon, size: 24.0), // Size reduced from 40.0 to 24.0
-          SizedBox(height: 8), // Added some space between the icon and the label
+          Icon(icon, size: 10.0), // Size reduced from 40.0 to 24.0
+          SizedBox(height: 2), // Added some space between the icon and the label
           Text(label, textAlign: TextAlign.center, style: TextStyle(fontSize: 14)), // Optionally, adjust font size for the label
         ],
       ),
