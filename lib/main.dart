@@ -120,9 +120,24 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ),
-      body: Center(
-        child: Text('Welcome to Utibu Health!'),
+      ), body: SingleChildScrollView( // Allows for scrolling if content exceeds screen size
+        child: Column(
+          children: [
+            SizedBox(
+              height: 200, // Adjust the height as needed
+              width: double.infinity, // Ensures the image takes full width
+              child: Image.asset(
+                'assets/images/health_dashboard.png',
+                fit: BoxFit.cover, // Ensures the image covers the widget size
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Welcome to Utibu Health!'),
+            ),
+            // Add more widgets as needed
+          ],
+        ),
       ),
     );
   }
