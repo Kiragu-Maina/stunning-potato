@@ -131,27 +131,43 @@ class _HomePageState extends State<HomePage> {
               fit: BoxFit.cover, // Covers the whole widget area
             ),
           ),
-           SingleChildScrollView(
+          SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Text('Welcome to Utibu Health!', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    childAspectRatio: 3 / 2,
-                    children: <Widget>[
-                      _buildHomeIcon(Icons.add_shopping_cart, 'Order Medication', () => Navigator.pushNamed(context, '/orderMedication')),
-                      _buildHomeIcon(Icons.shopping_cart, 'Cart', () => Navigator.pushNamed(context, '/checkout')),
-                      _buildHomeIcon(Icons.receipt, 'View Statement', () => Navigator.pushNamed(context, '/viewStatement')),
-                      if (isLoggedIn) _buildHomeIcon(Icons.account_circle, 'Profile', () => Navigator.pushNamed(context, '/profile')),
-                    ],
+                SizedBox(height: 250),
+                if (!isLoggedIn)
+                  Container(
+                    padding: EdgeInsets.all(16), // Padding around the text for better readability
+                    color: Colors.white.withOpacity(0.85), // Slightly transparent white
+                    child: Text(
+                      'Welcome to Utibu Health! Access menu on top left to login and access your profile, view statements, and order medication.',
+                      // textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16, // Slightly larger text for better readability
+                        fontWeight: FontWeight.bold, // Bold text to grab attention
+                        color: Colors.black, // Text in black for contrast
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
+               ])) // Adjusted space for the background image
+          //       GridView.count(
+          //         shrinkWrap: true,
+          //         physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
+          //         crossAxisCount: 2,
+          //         childAspectRatio: 1 / 1, // Adjusted for smaller cards
+          //         crossAxisSpacing: 10, // Space between cards
+          //         mainAxisSpacing: 10, // Space between rows
+          //         padding: EdgeInsets.all(50), // Padding around the grid
+          //         children: <Widget>[
+          //           _buildHomeIcon(Icons.add_shopping_cart, 'Order Medication', () => Navigator.pushNamed(context, '/orderMedication')),
+          //           _buildHomeIcon(Icons.shopping_cart, 'Cart', () => Navigator.pushNamed(context, '/checkout')),
+          //           _buildHomeIcon(Icons.receipt, 'View Statement', () => Navigator.pushNamed(context, '/viewStatement')),
+          //           if (isLoggedIn) _buildHomeIcon(Icons.account_circle, 'Profile', () => Navigator.pushNamed(context, '/profile')),
+          //         ],
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
@@ -166,8 +182,8 @@ Widget _buildHomeIcon(IconData icon, String label, VoidCallback onTap) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(icon, size: 10.0), // Size reduced from 40.0 to 24.0
-          SizedBox(height: 2), // Added some space between the icon and the label
+          Icon(icon, size: 24.0), // Size reduced from 40.0 to 24.0
+          SizedBox(height: 8), // Added some space between the icon and the label
           Text(label, textAlign: TextAlign.center, style: TextStyle(fontSize: 14)), // Optionally, adjust font size for the label
         ],
       ),

@@ -22,11 +22,43 @@ class _OrderMedicationPageState extends State<OrderMedicationPage> {
     );
   }
 
+void _showLoginPrompt(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Error'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Log in'),
+            onPressed: () {
+              // Navigate to the login page
+              Navigator.of(context).pop(); // Close the dialog first
+              Navigator.pushNamed(context, '/login');
+            },
+          ),
+        ],
+      );
+    },
+  ).then((_) {
+    // Once the dialog is dismissed, clear the error message
+    Provider.of<MedicationProvider>(context, listen: false).clearErrorMessage();
+  });
+}
+
+
 
   @override
-  Widget build(BuildContext context) {
-    final medicationProvider = Provider.of<MedicationProvider>(context);
-    // Display a loading indicator if data is still being fetched
+Widget build(BuildContext context) {
+  final medicationProvider = Provider.of<MedicationProvider>(context);
+
+  // Show dialog if there is an error message
+  if (medicationProvider.errorMessage.isNotEmpty) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showLoginPrompt(context, medicationProvider.errorMessage);
+    });
+  }
     if (medicationProvider.isLoading) {
       return Scaffold(
         appBar: AppBar(
@@ -96,6 +128,8 @@ class _OrderMedicationPageState extends State<OrderMedicationPage> {
     );
   }
 }
+
+
 
 class MedicationSearch extends SearchDelegate<Medication?> {
   final List<Medication> medications;

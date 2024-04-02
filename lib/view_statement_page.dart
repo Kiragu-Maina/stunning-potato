@@ -46,9 +46,24 @@ class _OrdersPageState extends State<OrdersPage> {
       setState(() {
         isLoading = false; // Update loading state even if there's an error
       });
+      _showSnackBar('Error: Have you tried logging in first?');
+
       throw Exception('Failed to load orders');
     }
   }
+   void _showSnackBar(String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      action: SnackBarAction(
+        label: 'Log In',
+        onPressed: () {
+             Navigator.pushNamed(context, '/login');
+        },
+      ),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {

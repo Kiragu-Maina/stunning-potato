@@ -102,6 +102,22 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text('Login'),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: GestureDetector(
+                  onTap: () {
+                    // Navigate to your registration screen
+                    Navigator.pushNamed(context, '/register');
+                  },
+                  child: Text(
+                    'No account? Register',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

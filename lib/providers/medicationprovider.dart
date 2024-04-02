@@ -4,44 +4,61 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'medicationmodel.dart';
 import 'package:utibu/api.dart';
-
 class MedicationProvider with ChangeNotifier {
   List<Medication> _medications = [];
-  bool _isLoading = true; // loading state
+  bool _isLoading = true;
 
   List<Medication> get medications => _medications;
-  bool get isLoading => _isLoading; // Getter for loading state
+  bool get isLoading => _isLoading;
+  String _errorMessage = '';
 
+  String get errorMessage => _errorMessage;
+  
+  void clearErrorMessage() {
+    _errorMessage = '';
+    notifyListeners();
+  }
   Future<void> fetchMedications() async {
-    _isLoading = true; // Set loading to true when fetch begins
-    notifyListeners(); // Notify listeners to update UI
-    // Retrieve the auth token from SharedPreferences
+    _isLoading = true;
+    _errorMessage = ''; // Reset error message on new fetch attempt
+    
+    notifyListeners();
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
 
-    // Update the request to include the Authorization header with the token
     final url = "${ApiClient.baseUrl}medications";
-    final response = await http.get(
-      Uri.parse(url),
-      // Include the Authorization header
-      headers: {
-        'Authorization': 'Token $token', // Adjust if your API uses a different scheme, e.g., Bearer
-      },
-    );
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {'Authorization': 'Token $token'},
+      );
 
-    if (response.statusCode == 200) {
-      final List<Medication> loadedMedications = [];
-      final extractedData = json.decode(response.body) as List<dynamic>;
-      for (var medicationJson in extractedData) {
-        loadedMedications.add(Medication.fromJson(medicationJson));
-      }
-      _medications = loadedMedications;
-      _isLoading = false; // Set loading to false when fetch is complete
+      if (response.statusCode == 200) {
+        final List<Medication> loadedMedications = [];
+        final extractedData = json.decode(response.body) as List<dynamic>;
+        for (var medicationJson in extractedData) {
+          loadedMedications.add(Medication.fromJson(medicationJson));
+        }
+        _medications = loadedMedications;
+        _isLoading = false;
+        notifyListeners();
+        // return true; // Success
+      } else if (response.statusCode == 401) {
+      _errorMessage = 'Authentication Error. Please log in.';
+      _isLoading = false;
       notifyListeners();
     } else {
-      // Handle errors or invalid responses
-      print('Failed to load medications');
-
+      _errorMessage = 'Failed to load medications. Unknown error.';
+      _isLoading = false;
+      notifyListeners();
+    }
+    } catch (e) {
+      // Handle exceptions from the http request
+      print('Exception when loading medications: $e');
+      _isLoading = false;
+      notifyListeners();
+      // return false; // Failure due to exception
     }
   }
 }
+

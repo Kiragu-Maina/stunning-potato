@@ -1,4 +1,4 @@
-#Tue Apr 02 00:46:03 EAT 2024
+#Tue Apr 02 21:28:19 EAT 2024
 base.0=/home/alkennist__/projects/FlutterUITemplates/utibu/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
