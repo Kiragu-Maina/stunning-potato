@@ -1,5 +1,5 @@
 class ApiClient {
-  static final String _baseUrl = 'https://medcontrolbackenddjango-production-7e4f.up.railway.app/apis/';
+  static final String _baseUrl = 'https://alkenny.pythonanywhere.com/apis/';
 
   static String get baseUrl => _baseUrl;
 

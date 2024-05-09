@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-// Import other pages you want to navigate to
-import 'main.dart'; // Assuming you have a HomePage widget
+import 'main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'api.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,40 +14,42 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
-  // Added for user feedback
+  bool _isLoading = false; // New variable to control spinner visibility
+
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   Future<void> _login() async {
+    setState(() {
+      _isLoading = true; // Show spinner when login starts
+    });
+
     final url = "${ApiClient.baseUrl}login/";
     try {
-      final response = await http.post( Uri.parse(url),
+      final response = await http.post(Uri.parse(url),
           headers: {"Content-Type": "application/json"},
           body: json.encode({"username": _email, "password": _password}));
 
       if (response.statusCode == 200) {
-        // Decode the response
         final responseData = json.decode(response.body);
-        // Extract the token (adjust the key according to your API response structure)
         final token = responseData['token'];
 
-        // Save the token using SharedPreferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('auth_token', token);
 
-        // Navigate to HomePage upon successful login
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
       } else {
-        // If login fails, show an error message
         final responseData = json.decode(response.body);
         _showSnackBar(responseData['message'] ?? 'Error logging in');
       }
     } catch (e) {
-      // Handle errors like no internet connection
       _showSnackBar('Failed to connect to the server');
+    } finally {
+      setState(() {
+        _isLoading = false; // Hide spinner after login completes
+      });
     }
   }
-
 
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
@@ -58,69 +58,76 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey, // Assign the key to Scaffold
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Login'),
       ),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Username'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a valid username';
-                  }
-                  return null;
-                },
-                onSaved: (value) => _email = value ?? '',
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Password'),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty || value.length < 6) {
-                    return 'Password must be at least 6 characters long';
-                  }
-                  return null;
-                },
-                onSaved: (value) => _password = value ?? '',
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      _login();
-                    }
-                  },
-                  child: Text('Login'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: GestureDetector(
-                  onTap: () {
-                    // Navigate to your registration screen
-                    Navigator.pushNamed(context, '/register');
-                  },
-                  child: Text(
-                    'No account? Register',
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      decoration: TextDecoration.underline,
+      body: Stack(
+        children: [
+          Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  TextFormField(
+                    decoration: InputDecoration(labelText: 'Username'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a valid username';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) => _email = value ?? '',
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(labelText: 'Password'),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty || value.length < 6) {
+                        return 'Password must be at least 6 characters long';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) => _password = value ?? '',
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          _login();
+                        }
+                      },
+                      child: Text('Login'),
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/register');
+                      },
+                      child: Text(
+                        'No account? Register',
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          if (_isLoading)
+            Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
       ),
     );
   }

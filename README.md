@@ -42,7 +42,8 @@ To install the Utibu Health app on your Android device:
 
 ### Live App Preview
 
-You can also view a live preview of the app by visiting [Utibu Health App Live Preview](https://g-assist-b207f.web.app/).
+You can also view a live preview of the app by visiting [Utibu Health App Live Preview](https://g-assist-b207f.web.app/). Use username - jumali and password - jumali for quick login. You can also register a new account.
+
 
 ## Features
 
